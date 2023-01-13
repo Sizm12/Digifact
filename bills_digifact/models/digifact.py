@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError
-from requests import requests
+import requests
 
 class account_move_inherit(models.Model):
     _inherit='account.move'
