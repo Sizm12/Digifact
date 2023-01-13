@@ -35,6 +35,6 @@
     ],
     
     'external_dependencies': {
-        'python': ['request'],
+        'python': ['requests'],
     },
 }
