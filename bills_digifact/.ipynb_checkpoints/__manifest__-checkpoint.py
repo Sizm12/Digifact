@@ -27,7 +27,7 @@
          'security/ir.model.access.csv',
         'views/views.xml',
         'views/templates.xml',
-        'digifact_button.xml',
+        'views/digifact_button.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
