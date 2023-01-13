@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
  from odoo import http
 
-
  class BillsDigifact(http.Controller):
      @http.route('/bills_digifact/bills_digifact/', auth='public')
      def index(self, **kw):
