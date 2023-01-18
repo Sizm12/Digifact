@@ -10,7 +10,7 @@ class account_move_inherit(models.Model):
         for rec in self:
             customer = rec.partner_id.name
             
-            for item in record.invoice_line_ids
+            for item in rec.invoice_line_ids
             var= item.product_id.name
             raise UserError(_('El cliente es %s'%var)) 
 
