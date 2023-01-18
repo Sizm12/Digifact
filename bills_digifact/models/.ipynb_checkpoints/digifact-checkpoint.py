@@ -7,7 +7,7 @@ class account_move_inherit(models.Model):
     
     def test_button_function(self):
         
-        customer= self._fields['partner_id'].value
+        customer= self._fields['partner_id'].name
         raise UserError(_('El cliente es %s'%customer))
         #URL= "https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token"
         #Params={"Username":"GT.000041545036.TESTUSER","Password":"j6C7&f5?"}
