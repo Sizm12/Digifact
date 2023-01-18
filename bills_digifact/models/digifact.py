@@ -11,8 +11,8 @@ class account_move_inherit(models.Model):
             customer = rec.partner_id.name
             
             for item in rec.invoice_line_ids:
-                var= item[1].product_id.name
-                raise UserError(_('El cliente es %s'%var)) 
+                var= item.product_id.name
+            raise UserError(_('El cliente es %s'%var)) 
 
         #URL= "https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token"
         #Params={"Username":"GT.000041545036.TESTUSER","Password":"j6C7&f5?"}
