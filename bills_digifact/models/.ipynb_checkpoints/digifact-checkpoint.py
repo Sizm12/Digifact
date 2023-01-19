@@ -73,7 +73,7 @@ class account_move_inherit(models.Model):
                 Impuestos =  xml.SubElement(Item, "dte:Impuestos")
                 Impuesto = xml.SubElement(Impuestos, "dte:Impuesto")
                 Nombre= xml.SubElement(Impuesto, "dte:NombreCorto")
-                Nombre.text=item.tax_ids.name
+                Nombre.text="IVA"
                 CodigoUnidad= xml.SubElement(Impuesto, "dte:CodigoUnidadGravable")
                 CodigoUnidad.text="1"
                 MontoGravable = xml.SubElement(Impuesto, "dte:MontoGravable")
