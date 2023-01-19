@@ -94,7 +94,7 @@ class account_move_inherit(models.Model):
         payload= tree
         header = {"Content-Type": "application/xml","Authorization": token}
         Params={"Username":"GT.000041545036.TESTUSER","Password":"j6C7&f5?"}
-        response = request.request("POST",URLCertificied, data=payload, headers=header, params=querystring)
+        response = requests.post(url=URLCertificied, data=payload, headers=header, params=querystring)
         raise UserError(_('La consulta es %s'%response.text))
             #for item in rec.invoice_line_ids:
                 #tax= item.tax_ids.amount
