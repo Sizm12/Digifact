@@ -67,7 +67,7 @@ class account_move_inherit(models.Model):
                 PrecioUnitario= xml.SubElement(Item, 'dte:PrecioUnitario')
                 PrecioUnitario.text= str(item.price_unit)
                 Precio= xml.SubElement(Item, 'dte:Precio')
-                Precio.text= str(item.price_subtotal)
+                Precio.text= str((item.price_subtotal * (item.tax_ids.amount/100)) + item.price_subtotal)
                 Descuento= xml.SubElement(Item, 'dte:Descuento')
                 Descuento.text= "0"
                 Impuestos =  xml.SubElement(Item, "dte:Impuestos")
