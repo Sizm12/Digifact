@@ -18,7 +18,7 @@ class account_move_inherit(models.Model):
                 price= item.price_unit
                 taxs= price * tax
                 total_product= (price+taxs)*quantity
-                response= product +"-"+ total_product
+                response= product +"-"+ str(total_product)
                 raise UserError(_('El producto es %s'%response)) 
             
             #root= xml.Element("dte:GTDocumento", {'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:dte':"http://www.sat.gob.gt/dte/fel/0.2.0", 'Version':"0.1"})
