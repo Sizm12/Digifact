@@ -12,8 +12,14 @@ class account_move_inherit(models.Model):
         for rec in self:
             
             for item in rec.invoice_line_ids:
-                var= item.tax_ids.amount
-                raise UserError(_('La consulta es %s'%var)) 
+                tax= item.tax_ids.amount
+                product= item.product_id.name
+                quantity= item.quantity
+                price= item.price_unit
+                taxs= price * tax
+                total_product= (price+taxs)*quantity
+                response= product +"-"+ total_product
+                raise UserError(_('El producto es %s'%response)) 
             
             #root= xml.Element("dte:GTDocumento", {'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:dte':"http://www.sat.gob.gt/dte/fel/0.2.0", 'Version':"0.1"})
 
