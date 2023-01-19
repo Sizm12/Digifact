@@ -59,15 +59,15 @@ class account_move_inherit(models.Model):
             for item in rec.invoice_line_ids:
                 Item= xml.SubElement(Items,'dte:Item', {'NumeroLinea':"1", 'BienOServicio':"B"})
                 Cantidad= xml.SubElement(Item, 'dte:Cantidad')
-                Cantidad.text= item.quantity
+                Cantidad.text= str(item.quantity)
                 UnidadMedida= xml.SubElement(Item, 'dte:UnidadMedida')
                 UnidadMedida.text= "CA"
                 Descripcion= xml.SubElement(Item, 'dte:Descripcion')
                 Descripcion.text= item.product_id.name
                 PrecioUnitario= xml.SubElement(Item, 'dte:PrecioUnitario')
-                PrecioUnitario.text= item.price_unit
+                PrecioUnitario.text= str(item.price_unit)
                 Precio= xml.SubElement(Item, 'dte:Precio')
-                Precio.text= item.price_subtotal
+                Precio.text= str(item.price_subtotal)
                 Descuento= xml.SubElement(Item, 'dte:Descuento')
                 Descuento.text= "0"
                 Impuestos =  xml.SubElement(Item, "dte:Impuestos")
@@ -77,16 +77,16 @@ class account_move_inherit(models.Model):
                 CodigoUnidad= xml.SubElement(Impuesto, "dte:CodigoUnidadGravable")
                 CodigoUnidad.text="1"
                 MontoGravable = xml.SubElement(Impuesto, "dte:MontoGravable")
-                MontoGravable.text = item.price_subtotal
+                MontoGravable.text = str(item.price_subtotal)
                 MontoImpuesto = xml.SubElement(Impuesto, "dte:MontoImpuesto")
-                MontoImpuesto.text = (item.price_subtotal * (item.tax_ids.amount/100))
+                MontoImpuesto.text = str(item.price_subtotal * (item.tax_ids.amount/100))
                 Total =  xml.SubElement(Item, "dte:Total")
-                Total.text = (item.price_subtotal * (item.tax_ids.amount/100)) + item.price_subtotal
+                Total.text = str((item.price_subtotal * (item.tax_ids.amount/100)) + item.price_subtotal)
             f36=xml.SubElement(f2, "dte:Totales")
             TotalImpuestos= xml.SubElement(f36, "dte:TotalImpuestos")
-            TotalImpuesto= xml.SubElement(TotalImpuestos, "dte:TotalImpuesto", {'NombreCorto': "IVA", 'TotalMontoImpuesto':"150"})
+            TotalImpuesto= xml.SubElement(TotalImpuestos, "dte:TotalImpuesto", {'NombreCorto': "IVA", 'TotalMontoImpuesto':str(rec.amount_by_group)})
             GranTotal= xml.SubElement(f36, "dte:GranTotal")
-            GranTotal.text= "150"
+            GranTotal.text= str(rec.amount_total)
             tree= xml.tostring(root, encoding='utf8', method='xml', xml_declaration=True)
             
             raise UserError(_('La consulta es %s'%tree))
