@@ -36,6 +36,6 @@
     
     'external_dependencies': {
         'python': ['requests'],
-        'python': ['xml.etree.ElementTree'],
+        'python': ['elementpath'],
     },
 }

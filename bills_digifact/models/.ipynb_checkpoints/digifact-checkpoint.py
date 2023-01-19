@@ -1,6 +1,7 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError
 import requests
+import elementpath
 import xml.etree.ElementTree as xml
 
 class account_move_inherit(models.Model):
