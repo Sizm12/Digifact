@@ -11,10 +11,14 @@ class account_move_inherit(models.Model):
         
         for rec in self:
             
-            root= xml.Element("dte:GTDocumento", {'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:dte':"http://www.sat.gob.gt/dte/fel/0.2.0", 'Version':"0.1"})
+            for item in rec.invoice_line_ids:
+                var= item.tax_ids.amount
+                raise UserError(_('La consulta es %s'%var)) 
+            
+            #root= xml.Element("dte:GTDocumento", {'xmlns:xsi':"http://www.w3.org/2001/XMLSchema-instance", 'xmlns:dte':"http://www.sat.gob.gt/dte/fel/0.2.0", 'Version':"0.1"})
 
-            tree= xml.tostring(root, encoding='utf8', method='xml', xml_declaration=True)
-            raise UserError(_('La consulta es %s'%tree)) 
+            #tree= xml.tostring(root, encoding='utf8', method='xml', xml_declaration=True)
+            
             
             
             #customer = rec.partner_id.name
