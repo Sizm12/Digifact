@@ -84,9 +84,9 @@ class account_move_inherit(models.Model):
                 Total.text = (item.price_subtotal * (item.tax_ids.amount/100)) + item.price_subtotal
             f36=xml.SubElement(f2, "dte:Totales")
             TotalImpuestos= xml.SubElement(f36, "dte:TotalImpuestos")
-            TotalImpuesto= xml.SubElement(TotalImpuestos, "dte:TotalImpuesto", {'NombreCorto': "IVA", 'TotalMontoImpuesto':(rec.invoice_line_ids.amount_untaxed*0.15)})
+            TotalImpuesto= xml.SubElement(TotalImpuestos, "dte:TotalImpuesto", {'NombreCorto': "IVA", 'TotalMontoImpuesto':"150"})
             GranTotal= xml.SubElement(f36, "dte:GranTotal")
-            GranTotal.text= rec.invoice_line_ids.amount_total
+            GranTotal.text= "150"
             tree= xml.tostring(root, encoding='utf8', method='xml', xml_declaration=True)
             
             raise UserError(_('La consulta es %s'%tree))
