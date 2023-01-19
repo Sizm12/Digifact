@@ -84,12 +84,19 @@ class account_move_inherit(models.Model):
                 Total.text = str((item.price_subtotal * (item.tax_ids.amount/100)) + item.price_subtotal)
             f36=xml.SubElement(f2, "dte:Totales")
             TotalImpuestos= xml.SubElement(f36, "dte:TotalImpuestos")
-            TotalImpuesto= xml.SubElement(TotalImpuestos, "dte:TotalImpuesto", {'NombreCorto': "IVA", 'TotalMontoImpuesto':str(rec.amount_by_group)})
+            TotalImpuesto= xml.SubElement(TotalImpuestos, "dte:TotalImpuesto", {'NombreCorto': "IVA", 'TotalMontoImpuesto':str(rec.amount_untaxed*0.15)})
             GranTotal= xml.SubElement(f36, "dte:GranTotal")
             GranTotal.text= str(rec.amount_total)
             tree= xml.tostring(root, encoding='utf8', method='xml', xml_declaration=True)
             
-            raise UserError(_('La consulta es %s'%tree))
+        URLCertificied= "https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/FelRequestV2"
+        querystring = {"NIT":"000041545036","TIPO":"CERTIFICATE_DTE_XML_TOSIGN","FORMAT":"XML","USERNAME":"TESTUSER"}
+        payload= tree
+        header = {"Content-Type": "application/xml","Authorization": token}
+        Params={"Username":"GT.000041545036.TESTUSER","Password":"j6C7&f5?"}
+        response = request.request("POST",URLCertificied, data=payload, headers=header, params=querystring)
+            
+            raise UserError(_('La consulta es %s'%response.text))
             #for item in rec.invoice_line_ids:
                 #tax= item.tax_ids.amount
                 #product= item.product_id.name
