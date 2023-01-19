@@ -12,7 +12,7 @@ class account_move_inherit(models.Model):
         
         URL_Token="https://felgttestaws.digifact.com.gt/gt.com.fel.api.v3/api/login/get_token"
         Params_token={"Username":"GT.000041545036.TESTUSER","Password":"j6C7&f5?"}
-        response_token=request.post(url=URL_Token, data=Params_token)
+        response_token=requests.post(url=URL_Token, data=Params_token)
         resp= response_token.json()
         token= resp.get('Token')
         
