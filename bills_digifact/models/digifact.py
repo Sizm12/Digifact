@@ -16,7 +16,7 @@ class account_move_inherit(models.Model):
                 product= item.product_id.name
                 quantity= item.quantity
                 price= item.price_unit
-                taxs= price * tax
+                taxs= price * (tax/100)
                 total_product= (price+taxs)*quantity
                 response= product +"-"+ str(total_product)
                 raise UserError(_('El producto es %s'%response)) 
